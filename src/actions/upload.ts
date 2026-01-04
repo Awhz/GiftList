@@ -8,9 +8,21 @@ export async function uploadImage(formData: FormData): Promise<string> {
         throw new Error("No file provided");
     }
 
-    const blob = await put(file.name, file, {
-        access: "public",
-    });
+    const token = process.env.BLOB_READ_WRITE_TOKEN;
+    if (!token) {
+        console.error("BLOB_READ_WRITE_TOKEN is not configured");
+        throw new Error("Image upload is not configured. Please contact administrator.");
+    }
 
-    return blob.url;
+    try {
+        const blob = await put(file.name, file, {
+            access: "public",
+            token: token,
+        });
+
+        return blob.url;
+    } catch (error) {
+        console.error("Blob upload error:", error);
+        throw new Error("Failed to upload image. Please try again.");
+    }
 }
