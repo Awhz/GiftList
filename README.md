@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎁 Liste Cadeau (Gift List)
 
-## Getting Started
+Application web de gestion de listes de cadeaux avec réservation et cagnotte.
 
-First, run the development server:
+## ✨ Fonctionnalités
+
+- **Listes de cadeaux** : Créez et gérez plusieurs listes (Noël, Anniversaire, etc.)
+- **Réservation** : Les invités peuvent réserver des cadeaux sans que l'enfant/destinataire le sache
+- **Cagnotte** : Participez à plusieurs pour un gros cadeau
+- **Notifications Email** : Recevez un email quand un cadeau est réservé
+- **Personnalisation** : Couleur de bannière, icône et emojis personnalisables
+- **Scraping intelligent** : Auto-remplissage depuis Amazon, Cdiscount, FNAC, etc.
+
+## 🛠️ Stack Technique
+
+- **Framework** : Next.js 14 (App Router)
+- **Langage** : TypeScript
+- **Style** : Tailwind CSS
+- **Base de données** : Turso (SQLite edge)
+- **ORM** : Drizzle
+- **Stockage images** : Vercel Blob
+- **Emails** : Resend
+
+## 🚀 Installation
 
 ```bash
+# Cloner le projet
+git clone https://github.com/Awhz/GiftList.git
+cd GiftList
+
+# Installer les dépendances
+npm install
+
+# Configurer les variables d'environnement
+cp .env.example .env.local
+# Remplir les valeurs dans .env.local
+
+# Pousser le schéma DB
+npx drizzle-kit push
+
+# Lancer en développement
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ⚙️ Variables d'Environnement
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Variable | Description |
+|----------|-------------|
+| `TURSO_DATABASE_URL` | URL de la base Turso |
+| `TURSO_AUTH_TOKEN` | Token d'authentification Turso |
+| `ADMIN_USERNAME` | Nom d'utilisateur admin |
+| `ADMIN_PASSWORD` | Mot de passe admin |
+| `RESEND_API_KEY` | Clé API Resend (emails) |
+| `BLOB_READ_WRITE_TOKEN` | Token Vercel Blob (images) |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📦 Déploiement Vercel
 
-## Learn More
+1. Importez le repo sur [Vercel](https://vercel.com)
+2. Ajoutez les variables d'environnement
+3. Pour Vercel Blob : **Storage > Create > Blob** (auto-configure le token)
+4. Déployez !
 
-To learn more about Next.js, take a look at the following resources:
+## 📝 Licence
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
